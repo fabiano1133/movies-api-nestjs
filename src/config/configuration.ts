@@ -20,8 +20,8 @@ export default () => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     },
     cache: {
-      host: process.env.CACHE_HOST,
-      port: parseInt(process.env.CACHE_PORT),
+      url: process.env.REDIS_URL,
+      ttl: parseInt(process.env.REDIS_TTL),
     },
   };
 };

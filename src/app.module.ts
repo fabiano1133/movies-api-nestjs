@@ -6,7 +6,7 @@ import { MoviesModule } from './movies/movies.module';
 import { AuthModule } from './auth/auth.module';
 import { TokenGenerateModule } from './ultils/providers/token-generate/token-generate.module';
 import { CacheModule } from '@nestjs/cache-manager';
-import * as redisStore from 'cache-manager-redis-store';
+
 import configuration from './config/configuration';
 
 const config = configuration();
@@ -15,9 +15,8 @@ const config = configuration();
   imports: [
     CacheModule.register({
       isGlobal: true,
-      store: redisStore,
-      host: config.cache.host,
-      port: config.cache.port,
+      url: config.cache.url,
+      ttl: config.cache.ttl,
     }),
     TokenGenerateModule,
     HealthModule,
