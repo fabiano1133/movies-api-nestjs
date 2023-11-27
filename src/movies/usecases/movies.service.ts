@@ -4,6 +4,8 @@ import { CreateMovieDTO } from '../infra/DTOs/create-movie.dto';
 import { Movies } from '../infra/entities/movies.entity';
 import { UpdateMovieDTO } from '../infra/DTOs/update-movie.dto';
 import { AppError } from '../../ultils/error/AppError';
+import { Cache } from 'cache-manager';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 @Injectable()
 export class MoviesService {
@@ -11,6 +13,8 @@ export class MoviesService {
     @Inject('IMoviesRepository')
     private readonly moviesRepository: IMoviesRepository,
     private appError: AppError,
+    @Inject(CACHE_MANAGER)
+    private cacheService: Cache,
   ) {}
   async create(data: CreateMovieDTO, user_id: string): Promise<void> {
     try {
@@ -39,7 +43,13 @@ export class MoviesService {
   }
 
   async findMovies(): Promise<Movies[]> {
-    return await this.moviesRepository.findMovies();
+    const movies = await this.moviesRepository.findMovies();
+
+    await this.cacheService.set('movies', movies);
+
+    const cacheMovies = await this.cacheService.get('movies');
+
+    return cacheMovies as Movies[];
   }
 
   async update(id: string, data: UpdateMovieDTO): Promise<void> {
