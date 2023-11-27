@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  # app:
+  #   build: .
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - postgresql
+  #   networks:
+  #     - app_network
+
+  postgresql:
+    image: docker.io/bitnami/postgresql:16
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+    environment:
+      - 'POSTGRESQL_USERNAME=${DATABASE_USER}'
+      - 'POSTGRESQL_PASSWORD=${DATABASE_PASSWORD}'
+      - 'POSTGRESQL_DATABASE=${DATABASE_NAME}'
+    networks:
+      - app_network
+
+volumes:
+  postgresql_data:
+    driver: local
+
+networks:
+  app_network:
+    driver: bridge
