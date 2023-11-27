@@ -13,7 +13,10 @@ export default () => {
       username_db: process.env.POSTGRESQL_USER,
       password: process.env.POSTGRESQL_PASSWORD,
       database: process.env.POSTGRESQL_DATABASE,
-      synchronize: false,
+      synchronize:
+        process.env.NODE_ENV === 'development'
+          ? true
+          : process.env.POSTGRESQL_SYNCHRONYZE,
     },
     jwt: {
       secret: process.env.JWT_SECRET,

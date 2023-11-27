@@ -16,7 +16,7 @@ const config = configuration();
       password: config.database.password,
       database: config.database.database,
       entities: [User, Movies],
-      synchronize: config.database.synchronize,
+      synchronize: config.database.synchronize as boolean,
       ssl: true,
     }),
   ],
