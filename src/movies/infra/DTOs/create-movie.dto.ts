@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsString,
-  IsNumber,
-  IsNotEmpty,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsString, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class CreateMovieDTO {
   id?: string;
@@ -22,15 +16,11 @@ export class CreateMovieDTO {
 
   @ApiProperty()
   @IsNotEmpty({ message: 'Ano não pode ser vazio' })
-  @MinLength(4, { message: 'Ano inválido' })
-  @MaxLength(4)
   @IsNumber({}, { message: 'O campo Ano deve ser um número' })
   year: number;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'Duração não pode ser vazio' })
-  @MinLength(3, { message: 'Duração deve ser informada em minutos' })
-  @MaxLength(3)
   @IsNumber({}, { message: 'O campo Duração deve ser um número' })
   duration: number;
 
