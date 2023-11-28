@@ -17,7 +17,7 @@ const config = configuration();
       database: config.database.database,
       entities: [User, Movies],
       synchronize: config.database.synchronize as boolean,
-      ssl: process.env.NODE_ENV === 'develeopment' ? false : true,
+      ssl: process.env.NODE_ENV === 'development' ? false : true,
     }),
   ],
   controllers: [],
