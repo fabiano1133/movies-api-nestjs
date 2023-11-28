@@ -61,11 +61,15 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 ## Exemplo de Uso
 
-1. **Autenticação:**
+1. **Criar uma conta:**
+
+   - Faça uma requisição `POST v1/api/account/create-account` crie uma conta para poder realizar o login.
+
+2. **Autenticação:**
 
    - Faça uma requisição `POST v1/api/auth/login` com credenciais de usuário para obter um token JWT.
 
-2. **Acesso a Recursos Protegidos:**
+3. **Acesso a Recursos Protegidos:**
    - Inclua o token JWT obtido no cabeçalho das requisições para os endpoints protegidos (`Authorization: Bearer <token>`).
 
 ## Contribuição
