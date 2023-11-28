@@ -1,7 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService, IResponseToken } from './auth.service';
 import { SignInAccountDTO } from 'src/account/infra/DTOs/signin-account.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Account')
 @Controller('v1/api/auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

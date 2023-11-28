@@ -16,8 +16,11 @@ import { CreateMovieDTO } from '../DTOs/create-movie.dto';
 import { Movies } from '../entities/movies.entity';
 import { UpdateMovieDTO } from '../DTOs/update-movie.dto';
 import { AuthGuard } from 'src/common/Guard/auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
+@ApiTags('Movies')
+@ApiBearerAuth()
 @Controller('v1/api/movies')
 export class MoviesController {
   constructor(private moviesService: MoviesService) {}

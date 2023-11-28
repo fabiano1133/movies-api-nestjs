@@ -26,19 +26,19 @@ services:
     networks:
       - app_network
 
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - '3000:3000'
-    depends_on:
-      # - redis
-      - postgresql
-    networks:
-      - app_network
-    env_file:
-      - .env
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     # - redis
+  #     - postgresql
+  #   networks:
+  #     - app_network
+  #   env_file:
+  #     - .env
 
 volumes:
   # redis_data:
